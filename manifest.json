@@ -1,0 +1,23 @@
+{
+  "manifest_version": 3,
+  "name": "Val Companion",
+  "version": "2.0.2",
+  "description": "Scans trading charts on demand and suggests likely next moves using a lightweight random-forest model.",
+  "permissions": [
+    "activeTab",
+    "scripting",
+    "storage",
+    "tabs"
+  ],
+  "host_permissions": [
+    "<all_urls>"
+  ],
+  "background": {
+    "service_worker": "src/background.js",
+    "type": "module"
+  },
+  "action": {
+    "default_title": "Val Companion",
+    "default_popup": "popup.html"
+  }
+}

@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>VALC 🪖</title>
+    <link rel="stylesheet" href="popup.css" />
+  </head>
+  <body>
+    <main class="app">
+      <section class="hero">
+        <div class="title-row">
+          <h1>VALC <span class="title-emoji">🪖</span></h1>
+          <button id="openGallery" class="icon-button" type="button" aria-label="Open saved scans">📁</button>
+          <button id="openSettings" class="icon-button" type="button" aria-label="Open design settings">⚙</button>
+          <div class="source-select-wrap">
+            <span id="sourceEmoji" class="source-emoji" aria-hidden="true">🦖</span>
+            <select id="sourceSelect" class="source-select" aria-label="Platform">
+            <option value="gmgn">GMGN 🦖</option>
+            <option value="axiom">Axiom 🔺</option>
+            <option value="terminal">Terminal 💊</option>
+            <option value="phantom">Phantom 👻</option>
+            <option value="tradingview">TradingView ⚪</option>
+            </select>
+          </div>
+          <span id="headerStatusDot" class="header-status-dot not-ready" aria-label="Not ready to scan"></span>
+        </div>
+        <p class="subtitle">Pattern coverage: <span id="patternCount">0/10</span></p>
+      </section>
+
+      <section class="panel">
+        <div class="button-row">
+          <button id="startScan" class="primary">Start scan</button>
+          <button id="startTrading" class="trading">Trading</button>
+          <button id="stopScan" class="secondary">Stop scan</button>
+        </div>
+      </section>
+
+      <section class="panel result-panel">
+        <h2>Latest signal</h2>
+        <div class="result-grid">
+          <div>
+            <p class="label">Pattern</p>
+            <p id="patternName" class="value">No signal yet</p>
+          </div>
+          <div>
+            <p class="label">Bias</p>
+            <p id="marketBias" class="value">Neutral</p>
+          </div>
+          <div>
+            <p class="label">Confidence</p>
+            <p id="confidence" class="value">0%</p>
+          </div>
+          <div>
+            <p class="label">Samples</p>
+            <p id="sampleCount" class="value">0</p>
+          </div>
+          <div>
+            <p class="label">Move</p>
+            <p id="predictedMove" class="value">Pending</p>
+          </div>
+        </div>
+
+        <div class="forecast">
+          <p class="label">What may come next</p>
+          <p id="forecastText" class="forecast-text">
+            Start a scan on an open chart tab to generate a forecast.
+          </p>
+        </div>
+
+        <div id="scoresSection">
+          <p class="label">Top pattern probabilities</p>
+          <div id="patternScores" class="score-list"></div>
+        </div>
+      </section>
+
+      <section id="galleryPanel" class="panel gallery-panel" hidden>
+        <div class="gallery-head">
+          <h2>Saved scans</h2>
+          <button id="closeGallery" class="icon-button" type="button" aria-label="Close saved scans">✕</button>
+        </div>
+        <div class="upload-row">
+          <button id="uploadChart" class="secondary upload-button" type="button">Upload chart</button>
+          <input id="uploadInput" type="file" accept="image/*" hidden />
+        </div>
+        <div id="galleryList" class="gallery-list"></div>
+      </section>
+
+      <section id="settingsPanel" class="panel gallery-panel" hidden>
+        <div class="gallery-head">
+          <h2>Design</h2>
+          <button id="closeSettings" class="icon-button" type="button" aria-label="Close design settings">✕</button>
+        </div>
+        <div class="settings-grid">
+          <button class="theme-swatch" data-accent="#8b5cf6" data-bg="#0b0b10" style="background:#8b5cf6"></button>
+          <button class="theme-swatch" data-accent="#22c55e" data-bg="#09110d" style="background:#22c55e"></button>
+          <button class="theme-swatch" data-accent="#f97316" data-bg="#120c08" style="background:#f97316"></button>
+          <button class="theme-swatch" data-accent="#06b6d4" data-bg="#071115" style="background:#06b6d4"></button>
+          <button class="theme-swatch" data-accent="#ef4444" data-bg="#13090a" style="background:#ef4444"></button>
+          <button class="theme-swatch" data-accent="#eab308" data-bg="#151207" style="background:#eab308"></button>
+        </div>
+        <section class="model-panel">
+          <p class="label">Models</p>
+          <div class="model-list">
+            <article class="model-card">
+              <p class="model-name">Random Forest Classifier</p>
+              <p class="model-text">Predicts the most likely chart pattern from the 10 learned patterns.</p>
+            </article>
+            <article class="model-card">
+              <p class="model-name">Random Forest Regressor</p>
+              <p class="model-text">Estimates direction and strength for what may come next on the current chart.</p>
+            </article>
+          </div>
+          <div id="modelMeta" class="model-meta"></div>
+        </section>
+      </section>
+    </main>
+
+    <script type="module" src="src/popup.js"></script>
+  </body>
+</html>
